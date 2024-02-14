@@ -57,11 +57,19 @@ def get_styled_schema(df: pd.DataFrame) -> Any:
             {"selector": "td", "props": [("font-family", "arial")]},
             {
                 "selector": "tr:nth-of-type(odd)",
-                "props": [("background", "#f5f5f5"), ("font-size", "13"), ("text-align", "right")],
+                "props": [
+                    ("background", "#f5f5f5"),
+                    ("font-size", "13"),
+                    ("text-align", "right"),
+                ],
             },
             {
                 "selector": "tr:nth-of-type(even)",
-                "props": [("background", "#white"), ("font-size", "13"), ("text-align", "right")],
+                "props": [
+                    ("background", "#white"),
+                    ("font-size", "13"),
+                    ("text-align", "right"),
+                ],
             },
             {"selector": "tr:hover", "props": [("background-color", "e0f1ff")]},
         ]

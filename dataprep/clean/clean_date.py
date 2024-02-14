@@ -156,7 +156,13 @@ def clean_date(
     df["clean_code_tup"] = df[column].map_partitions(
         lambda srs: [
             _format_date(
-                x, output_format, input_timezone, output_timezone, fix_missing, is_day_first, errors
+                x,
+                output_format,
+                input_timezone,
+                output_timezone,
+                fix_missing,
+                is_day_first,
+                errors,
             )
             for x in srs
         ],
@@ -285,7 +291,10 @@ def _format_date(
         if parsed_output_format_data.valid:
             if parsed_date_data.valid == "cleaned":
                 transformed_date = _transform(
-                    parsed_date_data, parsed_output_format_data, output_format, output_timezone
+                    parsed_date_data,
+                    parsed_output_format_data,
+                    output_format,
+                    output_timezone,
                 )
                 return transformed_date, 2 if val != transformed_date else 3
             else:
@@ -1107,11 +1116,15 @@ def _transform(
         parsed_date_data = _change_timezone(parsed_date_data, output_timezone)
     # Handle year
     result = _transform_year(
-        result, parsed_output_format_data.ymd_token["year_token"], parsed_date_data.ymd["year"]
+        result,
+        parsed_output_format_data.ymd_token["year_token"],
+        parsed_date_data.ymd["year"],
     )
     # Handle day
     result = _transform_day(
-        result, parsed_output_format_data.ymd_token["day_token"], parsed_date_data.ymd["day"]
+        result,
+        parsed_output_format_data.ymd_token["day_token"],
+        parsed_date_data.ymd["day"],
     )
     # Handle hours
     result = _transform_hms(
@@ -1136,7 +1149,9 @@ def _transform(
     )
     # Handle month
     result = _transform_month(
-        result, parsed_output_format_data.ymd_token["month_token"], parsed_date_data.ymd["month"]
+        result,
+        parsed_output_format_data.ymd_token["month_token"],
+        parsed_date_data.ymd["month"],
     )
     # Handle weekday
     result = _transform_weekday(

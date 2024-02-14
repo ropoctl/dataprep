@@ -74,7 +74,9 @@ def _compute_missing_nullivariate(df: EDAFrame, cfg: Config) -> Generator[Any, A
             # To solve the problem, we create a 2d array here
             heatmap = np.empty([ncols, ncols]) if not isinstance(heatmap, np.ndarray) else heatmap
             heatmap = pd.DataFrame(
-                data=heatmap[:, sel][sel, :], columns=df.columns[sel], index=df.columns[sel]
+                data=heatmap[:, sel][sel, :],
+                columns=df.columns[sel],
+                index=df.columns[sel],
             )
         else:
             heatmap = pd.DataFrame(data=heatmap, columns=df.columns[sel], index=df.columns[sel])

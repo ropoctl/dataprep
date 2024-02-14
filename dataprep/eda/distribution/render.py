@@ -72,7 +72,6 @@ def _make_title(grp_cnt_stats: Dict[str, int], x: str, y: str) -> str:
 
 
 def _format_values(key: str, value: Any) -> str:
-
     if not isinstance(value, (int, float)):
         # if value is a time
         return str(value)
@@ -1510,13 +1509,27 @@ def render_distribution_grid(itmdt: Intermediate, cfg: Config) -> Dict[str, Any]
             htgs[col] = cfg.bar.grid_how_to_guide()
         elif isinstance(dtp, Continuous):
             fig = hist_viz(
-                data, nrows, col, cfg.hist.yscale, cfg.hist.color, plot_width, plot_height, False
+                data,
+                nrows,
+                col,
+                cfg.hist.yscale,
+                cfg.hist.color,
+                plot_width,
+                plot_height,
+                False,
             )
             htgs[col] = cfg.hist.grid_how_to_guide()
         elif isinstance(dtp, DateTime):
             df, timeunit, miss_pct = data
             fig = dt_line_viz(
-                df, col, timeunit, cfg.line.yscale, plot_width, plot_height, False, miss_pct
+                df,
+                col,
+                timeunit,
+                cfg.line.yscale,
+                plot_width,
+                plot_height,
+                False,
+                miss_pct,
             )
         else:
             raise ValueError(f"unprocessed col:{col}, type:{dtp}")
@@ -2012,7 +2025,14 @@ def render_dt(itmdt: Intermediate, cfg: Config) -> Dict[str, Any]:
     if cfg.line.enable:
         df, timeunit, miss_pct = itmdt["line"]
         fig = dt_line_viz(
-            df, itmdt["col"], timeunit, cfg.line.yscale, plot_width, plot_height, True, miss_pct
+            df,
+            itmdt["col"],
+            timeunit,
+            cfg.line.yscale,
+            plot_width,
+            plot_height,
+            True,
+            miss_pct,
         )
         fig.frame_width = int(plot_width * 0.95)
         tabs.append(Panel(child=fig, title="Line Chart"))

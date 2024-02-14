@@ -280,7 +280,10 @@ def test_clean_remove_bracketed(df_text: pd.DataFrame) -> None:
     pipeline_all_excl = [
         {
             "operator": "remove_bracketed",
-            "parameters": {"brackets": {"angle", "curly", "round", "square"}, "inclusive": False},
+            "parameters": {
+                "brackets": {"angle", "curly", "round", "square"},
+                "inclusive": False,
+            },
         }
     ]
     df_clean_all_excl = clean_text(df_text, "text", pipeline=pipeline_all_excl)
@@ -546,7 +549,11 @@ def test_clean_replace_bracketed(df_text: pd.DataFrame) -> None:
     pipeline_square_excl = [
         {
             "operator": "replace_bracketed",
-            "parameters": {"brackets": "square", "value": "SPOILER WARNING", "inclusive": False},
+            "parameters": {
+                "brackets": "square",
+                "value": "SPOILER WARNING",
+                "inclusive": False,
+            },
         }
     ]
     df_clean_square_excl = clean_text(df_text, "text", pipeline=pipeline_square_excl)
@@ -610,7 +617,10 @@ def test_clean_replace_digits(df_text: pd.DataFrame) -> None:
 
 def test_clean_replace_prefixed(df_text: pd.DataFrame) -> None:
     pipeline_hashtag = [
-        {"operator": "replace_prefixed", "parameters": {"prefix": "#", "value": "<HASHTAG>"}}
+        {
+            "operator": "replace_prefixed",
+            "parameters": {"prefix": "#", "value": "<HASHTAG>"},
+        }
     ]
     df_clean_hashtag = clean_text(df_text, "text", pipeline=pipeline_hashtag)
     df_check_hashtag = df_text.copy()
@@ -628,7 +638,10 @@ def test_clean_replace_prefixed(df_text: pd.DataFrame) -> None:
         "NULL",
     ]
     pipeline_hashtag_mention = [
-        {"operator": "replace_prefixed", "parameters": {"prefix": {"#", "@"}, "value": "<TAG>"}}
+        {
+            "operator": "replace_prefixed",
+            "parameters": {"prefix": {"#", "@"}, "value": "<TAG>"},
+        }
     ]
     df_clean_hashtag_mention = clean_text(df_text, "text", pipeline=pipeline_hashtag_mention)
     df_check_hashtag_mention = df_text.copy()
@@ -713,7 +726,10 @@ def test_clean_replace_stopwords(df_text: pd.DataFrame) -> None:
 
 def test_clean_replace_text(df_text: pd.DataFrame) -> None:
     pipeline = [
-        {"operator": "replace_text", "parameters": {"value": {"imdb": "Netflix", "film": "movie"}}}
+        {
+            "operator": "replace_text",
+            "parameters": {"value": {"imdb": "Netflix", "film": "movie"}},
+        }
     ]
     df_clean = clean_text(df_text, "text", pipeline=pipeline)
     df_check = df_text.copy()
@@ -733,7 +749,10 @@ def test_clean_replace_text(df_text: pd.DataFrame) -> None:
     pipeline_no_block = [
         {
             "operator": "replace_text",
-            "parameters": {"value": {"imdb": "Netflix", "film": "movie"}, "block": False},
+            "parameters": {
+                "value": {"imdb": "Netflix", "film": "movie"},
+                "block": False,
+            },
         }
     ]
     df_clean_no_block = clean_text(df_text, "text", pipeline=pipeline_no_block)

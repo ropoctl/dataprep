@@ -52,7 +52,6 @@ def compute_diff(
         cfg = Config()
 
     if isinstance(df, list):
-
         if len(df) < 2:
             raise DataprepError("plot_diff needs at least 2 DataFrames.")
         if len(df) > 5:

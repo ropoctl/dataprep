@@ -90,7 +90,6 @@ def format_diff_report(
         A dictionary of results
     """
     if isinstance(df_list, list):
-
         if not cfg.diff.label:
             cfg.diff.label = [f"df{i+1}" for i in range(len(df_list))]
 
@@ -100,7 +99,6 @@ def format_diff_report(
             raise DataprepError("Too many DataFrames, max: 5.")
 
     elif isinstance(df_list, dict):
-
         if not cfg.diff.label:
             cfg.diff.label = list(df_list.keys())
 
@@ -366,9 +364,17 @@ def _format_variables(df: EDAFrame, cfg: Config, data: Dict[str, Any]) -> Dict[s
             elif type(dtp) in [Nominal, SmallCardNum, GeoGraphy, GeoPoint]:
                 itmdt = Intermediate(col=col, data=data[col], visual_type="categorical_column")
                 stats = format_cat_stats(
-                    data[col]["stats"], data[col]["len_stats"], data[col]["letter_stats"]
+                    data[col]["stats"],
+                    data[col]["len_stats"],
+                    data[col]["letter_stats"],
                 )
-                tab_names = ["Stats", "Word Length", "Pie Chart", "Word Cloud", "Word Frequency"]
+                tab_names = [
+                    "Stats",
+                    "Word Length",
+                    "Pie Chart",
+                    "Word Cloud",
+                    "Word Frequency",
+                ]
             elif isinstance(dtp, DateTime):
                 itmdt = Intermediate(
                     col=col,

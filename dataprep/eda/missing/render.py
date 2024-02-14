@@ -25,7 +25,14 @@ from bokeh.plotting import Figure
 
 from ...errors import UnreachableError
 from ..configs import Config
-from ..dtypes_v2 import Continuous, Nominal, GeoGraphy, SmallCardNum, drop_null, DateTime
+from ..dtypes_v2 import (
+    Continuous,
+    Nominal,
+    GeoGraphy,
+    SmallCardNum,
+    drop_null,
+    DateTime,
+)
 from ..intermediate import ColumnMetadata, Intermediate
 from ..palette import CATEGORY10, CATEGORY20, GREYS256, RDBU
 from ..utils import cut_long_name, fuse_missing_perc, relocate_legend
@@ -154,7 +161,6 @@ def render_hist(
         df["x"] = df["x"].astype("str")
         x_range = FactorRange(*df["x"].unique())
     elif isinstance(meta["dtype"], Continuous):
-
         radius = df["x"][1] - df["x"][0]
         x_range = Range1d(df["x"].min() - radius, df["x"].max() + radius)
     else:

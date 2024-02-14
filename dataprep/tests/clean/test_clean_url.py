@@ -279,7 +279,11 @@ def test_clean_inplace(df_urls: pd.DataFrame) -> None:
                     "scheme": "https",
                     "host": "www.sfu.ca",
                     "messy_url_clean": "https://www.sfu.ca/ficticiouspath",
-                    "queries": {"auth": "sampletoken1", "studentid": "1234", "loc": "van"},
+                    "queries": {
+                        "auth": "sampletoken1",
+                        "studentid": "1234",
+                        "loc": "van",
+                    },
                 },
                 np.nan,
                 np.nan,
@@ -288,7 +292,11 @@ def test_clean_inplace(df_urls: pd.DataFrame) -> None:
                     "scheme": "https",
                     "host": "www.sfu.ca",
                     "messy_url_clean": "https://www.sfu.ca/ficticiouspath",
-                    "queries": {"auth": "sampletoken2", "studentid": "1230", "loc": "bur"},
+                    "queries": {
+                        "auth": "sampletoken2",
+                        "studentid": "1230",
+                        "loc": "bur",
+                    },
                 },
                 np.nan,
                 np.nan,
@@ -298,13 +306,21 @@ def test_clean_inplace(df_urls: pd.DataFrame) -> None:
                     "scheme": "https",
                     "host": "www.sfu.ca",
                     "messy_url_clean": "https://www.sfu.ca/ficticiouspath",
-                    "queries": {"auth": "sampletoken3", "studentid": "1231", "loc": "sur"},
+                    "queries": {
+                        "auth": "sampletoken3",
+                        "studentid": "1231",
+                        "loc": "sur",
+                    },
                 },
                 {
                     "scheme": "https",
                     "host": "www.sfu.ca",
                     "messy_url_clean": "https://www.sfu.ca/ficticiouspath",
-                    "queries": {"auth": "sampletoken1", "studentid": "1232", "loc": "van"},
+                    "queries": {
+                        "auth": "sampletoken1",
+                        "studentid": "1232",
+                        "loc": "van",
+                    },
                 },
             ]
         }

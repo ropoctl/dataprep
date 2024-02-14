@@ -58,7 +58,6 @@ class EDAFrame:
         dtype: Optional[DTypeDef] = None,
         repartition: bool = True,
     ) -> None:
-
         _suppress_warnings()
 
         # Init. instance attribute.

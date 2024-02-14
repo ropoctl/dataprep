@@ -139,7 +139,10 @@ def nom_comps(srs: dd.Series, cfg: Config) -> Dict[str, Any]:
     if cfg.stats.enable or cfg.value_table.enable:
         data.update(_calc_nom_stats(srs, df, data["nrows"], data["nuniq"]))
     elif cfg.wordfreq.enable and cfg.insight.enable:
-        data["len_stats"] = {"Minimum": srs.str.len().min(), "Maximum": srs.str.len().max()}
+        data["len_stats"] = {
+            "Minimum": srs.str.len().min(),
+            "Maximum": srs.str.len().max(),
+        }
     if cfg.wordlen.enable:
         lens = srs.str.len()
         data["len_hist"] = da.histogram(lens, cfg.wordlen.bins, (lens.min(), lens.max()))

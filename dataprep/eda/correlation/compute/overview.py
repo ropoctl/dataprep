@@ -173,7 +173,6 @@ def correlation_nxn(
         corrs[CorrelationMethod.Spearman] = _spearman_nxn(df)
     if cfg.kendall.enable or cfg.stats.enable:
         corrs[CorrelationMethod.KendallTau] = _kendall_tau_nxn(df)
-
     return cordx, cordy, corrs
 
 

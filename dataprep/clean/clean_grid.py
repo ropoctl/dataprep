@@ -138,7 +138,10 @@ def validate_grid(
 
 
 def _format(
-    val: Any, output_format: str = "standard", split: bool = False, errors: str = "coarse"
+    val: Any,
+    output_format: str = "standard",
+    split: bool = False,
+    errors: str = "coarse",
 ) -> Any:
     """
     Reformat a number string with proper separators (formats).

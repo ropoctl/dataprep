@@ -22,7 +22,6 @@ def _calc_bivariate(
     *,
     k: Optional[int] = None,
 ) -> Intermediate:
-
     num_df: dd.DataFrame = df.select_num_columns().frame
 
     if x not in num_df.columns:

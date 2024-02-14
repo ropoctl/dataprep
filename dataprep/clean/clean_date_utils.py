@@ -412,7 +412,11 @@ class ParsedTargetFormat:
         """
         This function initiate parsed_target_fomat
         """
-        self.ymd_token: Dict[str, str] = {"year_token": "", "month_token": "", "day_token": ""}
+        self.ymd_token: Dict[str, str] = {
+            "year_token": "",
+            "month_token": "",
+            "day_token": "",
+        }
         self.hms_token: Dict[str, Union[str, bool]] = {
             "hour_token": "",
             "minute_token": "",

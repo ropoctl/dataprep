@@ -204,7 +204,12 @@ def compare_multiple_df(
             data.append((col, Nominal(), _nom_calcs(norm_srs, cfg), orig))
         elif is_dtype(col_dtype, DateTime()) and cfg.line.enable:
             data.append(
-                (col, DateTime(), dask.delayed(_calc_line_dt)(srs, col, cfg.line.unit), orig)
+                (
+                    col,
+                    DateTime(),
+                    dask.delayed(_calc_line_dt)(srs, col, cfg.line.unit),
+                    orig,
+                )
             )
 
     stats = calc_stats(dfs, cfg, dtype)
@@ -282,7 +287,9 @@ def _cont_calcs(srs: Srs, cfg: Config) -> Dict[str, List[Any]]:
     mask = srs.apply("isin", {np.inf, -np.inf})
     srs = Srs(srs.getmask(mask, inverse=True), agg=True)
     min_max = srs.apply(
-        "map_partitions", lambda x: pd.Series([x.max(), x.min()]), meta=pd.Series([], dtype=float)
+        "map_partitions",
+        lambda x: pd.Series([x.max(), x.min()]),
+        meta=pd.Series([], dtype=float),
     ).data
     min_max_comp = []
     if cfg.diff.density:

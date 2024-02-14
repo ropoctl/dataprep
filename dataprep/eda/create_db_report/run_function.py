@@ -101,7 +101,8 @@ def parse_tables(
             elif c == "indices":
                 for current_index in current_columns["indices"]:
                     create_index = TableIndex(
-                        current_index, current_columns["indices"][current_index]["Index_type"]
+                        current_index,
+                        current_columns["indices"][current_index]["Index_type"],
                     )
                     if current_index == "PRIMARY" or "pkey" in current_index:
                         create_index.set_primary()
@@ -257,7 +258,9 @@ def generate_db_report(sql_engine: Engine, analyze: bool = False):
     orphan_page = OrphanPage(template_compiler)
     file = str(os.path.realpath(os.path.join(os.path.dirname(__file__), "layout", "orphans.html")))
     orphan_page.page_writer(
-        orphan_result_tables["json_tables"], orphan_result_tables["json_relationships"], file
+        orphan_result_tables["json_tables"],
+        orphan_result_tables["json_relationships"],
+        file,
     )
 
     table_files = ["table.html", "table.js"]

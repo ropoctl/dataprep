@@ -166,7 +166,9 @@ def _cont_calcs(srs: Srs, cfg: Config, df_list: List[dd.DataFrame], x: str) -> D
     mask = srs.apply("isin", {np.inf, -np.inf})
     srs = Srs(srs.getmask(mask, inverse=True), agg=True)
     min_max = srs.apply(
-        "map_partitions", lambda x: pd.Series([x.max(), x.min()]), meta=pd.Series([], dtype=float)
+        "map_partitions",
+        lambda x: pd.Series([x.max(), x.min()]),
+        meta=pd.Series([], dtype=float),
     ).data
     if cfg.kde.enable:
         min_max_comp = []

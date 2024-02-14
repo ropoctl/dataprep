@@ -54,7 +54,9 @@ def test_clean_default(df_addresses: pd.DataFrame) -> None:
 
 def test_clean_output_format(df_addresses: pd.DataFrame) -> None:
     df_clean = clean_address(
-        df_addresses, "messy_address", output_format="(zipcode) street_name ~~state_full~~"
+        df_addresses,
+        "messy_address",
+        output_format="(zipcode) street_name ~~state_full~~",
     )
     df_check = df_addresses.copy()
     df_check["messy_address_clean"] = [
@@ -95,7 +97,9 @@ def test_clean_output_format(df_addresses: pd.DataFrame) -> None:
 
 def test_clean_output_format_with_tabs(df_addresses: pd.DataFrame) -> None:
     df_clean = clean_address(
-        df_addresses, "messy_address", output_format="house_number street_name \t state_full"
+        df_addresses,
+        "messy_address",
+        output_format="house_number street_name \t state_full",
     )
     df_check = df_addresses.copy()
     df_check["house_number street_name"] = [

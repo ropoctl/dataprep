@@ -165,7 +165,6 @@ class Connector:  # pylint: disable=too-many-instance-attributes
             raise RuntimeError("_count should be larger than 0")
 
         async with ClientSession() as client:
-
             throttler = self._throttler.session()
 
             if reqconf.pagination is None or _count is None:
@@ -298,7 +297,6 @@ class Connector:  # pylint: disable=too-many-instance-attributes
         _q: Optional[str] = None,
         _raw: bool = False,
     ) -> Union[Optional[pd.DataFrame], Tuple[Optional[pd.DataFrame], ClientResponse]]:
-
         reqdef = table.config.request
         method = reqdef.method
 

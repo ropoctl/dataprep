@@ -93,6 +93,7 @@ def render_correlation(itmdt: Intermediate, cfg: Config) -> Any:
 #     _discard_unused_visual_elems(fig)
 #     return fig
 
+
 ########## HeatMaps ##########
 def tweak_figure(fig: Figure) -> None:
     """
@@ -491,7 +492,9 @@ def render_crossfilter(
     )
 
     interaction_fig = column(
-        row(x_select, y_select, align="center"), fig_all_in_one, sizing_mode="stretch_width"
+        row(x_select, y_select, align="center"),
+        fig_all_in_one,
+        sizing_mode="stretch_width",
     )
     return interaction_fig
 

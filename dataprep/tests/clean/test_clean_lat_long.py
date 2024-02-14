@@ -242,9 +242,14 @@ def test_clean_split_inplace(df_lat_long_column: pd.DataFrame) -> None:
     assert df_check.equals(df_clean)
 
 
-def test_clean_lat_long_separate_columns_split(df_separate_lat_long_columns: pd.DataFrame) -> None:
+def test_clean_lat_long_separate_columns_split(
+    df_separate_lat_long_columns: pd.DataFrame,
+) -> None:
     df_clean = clean_lat_long(
-        df_separate_lat_long_columns, lat_col="messy_lat", long_col="messy_long", split=True
+        df_separate_lat_long_columns,
+        lat_col="messy_lat",
+        long_col="messy_long",
+        split=True,
     )
     df_check = df_separate_lat_long_columns.copy()
     df_check["messy_lat_clean"] = [np.nan, 41.5, -41.0, 80.0, np.nan, np.nan]

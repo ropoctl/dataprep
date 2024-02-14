@@ -239,7 +239,14 @@ def _infer_semantic_data_type(column: pd.Series) -> Any:
     # 3. For string and semantic data types (email, country, phone, etc.)
     default_infer_dtype = infer_dtype(column_not_na_subset)
 
-    semantic_data_type_dic = {"email": 0, "country": 0, "phone": 0, "ip": 0, "URL": 0, "address": 0}
+    semantic_data_type_dic = {
+        "email": 0,
+        "country": 0,
+        "phone": 0,
+        "ip": 0,
+        "URL": 0,
+        "address": 0,
+    }
 
     semantic_data_type_dic["email"] = sum(pd.Series(validate_email(column_not_na_subset)).tolist())
     semantic_data_type_dic["country"] = sum(

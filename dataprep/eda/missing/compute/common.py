@@ -18,7 +18,6 @@ def uni_histogram(
     """Calculate "histogram" for both numerical and categorical."""
 
     if isinstance(srs_dtype, Continuous):
-
         counts, edges = da.histogram(srs, cfg.hist.bins, (srs.min(), srs.max()))
         centers = (edges[:-1] + edges[1:]) / 2
 

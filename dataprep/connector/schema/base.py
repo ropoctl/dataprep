@@ -70,7 +70,6 @@ class BaseDef(BaseModel):
                 else:
                     raise ValueError(f"None {attr} cannot be overriden.")
             else:
-
                 merged = merge_values(
                     cur_value,
                     rhs_value,

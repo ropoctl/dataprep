@@ -8,7 +8,7 @@ from warnings import catch_warnings, filterwarnings
 import dask
 import dask.dataframe as dd
 import pandas as pd
-from bokeh.embed import components
+from bokeh.embed import json_item
 from bokeh.plotting import Figure
 from ..configs import Config
 from ..correlation import render_correlation
@@ -17,7 +17,12 @@ from ..distribution import compute, render
 from ..utils import _calc_line_dt
 from ..distribution.compute.overview import calc_stats
 from ..distribution.compute.univariate import calc_stats_dt, cont_comps, nom_comps
-from ..distribution.render import format_cat_stats, format_num_stats, format_ov_stats, stats_viz_dt
+from ..distribution.render import (
+    format_cat_stats,
+    format_num_stats,
+    format_ov_stats,
+    stats_viz_dt,
+)
 from ..distribution.compute.overview import (
     _nom_calcs,
     _cont_calcs,
@@ -104,7 +109,9 @@ def _format_variables(df: EDAFrame, cfg: Config, data: Dict[str, Any]) -> Dict[s
             elif type(dtp) in [Nominal, SmallCardNum, GeoGraphy, GeoPoint]:
                 itmdt = Intermediate(col=col, data=data[col], visual_type="categorical_column")
                 stats = format_cat_stats(
-                    data[col]["stats"], data[col]["len_stats"], data[col]["letter_stats"]
+                    data[col]["stats"],
+                    data[col]["len_stats"],
+                    data[col]["letter_stats"],
                 )
             elif isinstance(dtp, DateTime):
                 itmdt = Intermediate(
@@ -127,14 +134,14 @@ def _format_variables(df: EDAFrame, cfg: Config, data: Dict[str, Any]) -> Dict[s
                     fig = tab
                 # fig.title = Title(text=tab.title, align="center")
                 figs_var.append(fig)
-            comp = components(figs_var)
+            plots = [json_item(i) for i in figs_var]
             insight_keys = list(rndrd["insights"].keys())[2:] if rndrd["insights"] else []
             res["variables"][col] = {
                 "tabledata": stats,
-                "plots": comp,
+                "plots": plots,
                 "col_type": itmdt.visual_type.replace("_column", ""),
                 "tab_name": rndrd["meta"],
-                "plots_tab": zip(comp[1][1:], rndrd["meta"][1:], insight_keys),
+                "plots_tab": list(zip(rndrd["meta"][1:], insight_keys)),
                 "insights_tab": rndrd["insights"],
             }
 
@@ -160,7 +167,7 @@ def _format_interaction(data: Dict[str, Any], cfg: Config) -> Dict[str, Any]:
         )
         rndrd = render_correlation(itmdt, cfg)
         rndrd.sizing_mode = "stretch_width"
-        res["interactions"] = components(rndrd)
+        res["interactions"] = json_item(rndrd)
     else:
         res["has_interaction"] = False
     return res
@@ -197,7 +204,7 @@ def _format_correlation(data: Dict[str, Any], cfg: Config) -> Dict[str, Any]:
                 fig.sizing_mode = "stretch_width"
                 figs_corr.append(fig)
                 res["correlation_names"].append(tab.title)
-            res["correlations"] = components(figs_corr)
+            res["correlations"] = [json_item(i) for i in figs_corr]
 
     else:
         res["has_correlation"] = False
@@ -220,7 +227,7 @@ def _format_missing(
         for fig in rndrd["layout"]:
             fig.sizing_mode = "stretch_both"
             figs_missing.append(fig)
-        res["missing"] = components(figs_missing)
+        res["missing"] = [json_item(i) for i in figs_missing]
         res["missing_tabs"] = ["Bar Chart", "Spectrum", "Heat Map"]
         # only display dendrogram when df has more than one column
         if ncols > 1:
@@ -286,13 +293,19 @@ def format_basic(df: EDAFrame, cfg: Config) -> Dict[str, Any]:
             category=RuntimeWarning,
         )
         (data,) = dask.compute(data)
-
     res_overview = _format_overview(data, cfg)
     res_variables = _format_variables(df, cfg, data)
     res_interaction = _format_interaction(data, cfg)
     res_correlations = _format_correlation(data, cfg)
     res_missing = _format_missing(data, cfg, completions, df.shape[1])
-    res = {**res_overview, **res_variables, **res_interaction, **res_correlations, **res_missing}
+    res = {
+        **res_overview,
+        **res_variables,
+        **res_interaction,
+        **res_correlations,
+        **res_missing,
+        "__RAW": data,
+    }
 
     return res
 
@@ -354,7 +367,11 @@ def _compute_overview(df: EDAFrame, cfg: Config) -> Dict[str, Any]:
                 data["insights"].append((col, Nominal(), _nom_calcs(srs, cfg)))
             elif isinstance(col_dtype, DateTime):
                 data["insights"].append(
-                    (col, DateTime(), dask.delayed(_calc_line_dt)(df.frame[[col]], cfg.line.unit))
+                    (
+                        col,
+                        DateTime(),
+                        dask.delayed(_calc_line_dt)(df.frame[[col]], cfg.line.unit),
+                    )
                 )
             else:
                 raise RuntimeError(f"unprocessed data type: col:{col}, dtype: {type(col_dtype)}")

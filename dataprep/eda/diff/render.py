@@ -459,7 +459,11 @@ def box_viz(
 
 # pylint:disable = unused-argument
 def render_correlation_single_heatmaps(
-    df_list: List[Dict[str, pd.DataFrame]], col: str, plot_width: int, plot_height: int, cfg: Config
+    df_list: List[Dict[str, pd.DataFrame]],
+    col: str,
+    plot_width: int,
+    plot_height: int,
+    cfg: Config,
 ) -> List[Panel]:
     """
     Render correlation heatmaps, but with single column
@@ -696,7 +700,14 @@ def render_comparison_continous(itmdt: Intermediate, cfg: Config) -> Dict[str, A
     if cfg.hist.enable:
         nrows = itmdt["stats"]["nrows"]
         fig = hist_viz(
-            data["hist"], nrows, col, cfg.hist.yscale, plot_width, plot_height, False, df_labels
+            data["hist"],
+            nrows,
+            col,
+            cfg.hist.yscale,
+            plot_width,
+            plot_height,
+            False,
+            df_labels,
         )
         tabs.append(Panel(child=row(fig), title="Histogram"))
         # htgs["Histogram"] = cfg.hist.how_to_guide(plot_height, plot_width)

@@ -4,7 +4,17 @@ Clean a DataFrame column containing duplicate values.
 
 from typing import Tuple, List, Dict, Any, Union
 
-from ipywidgets.widgets import Label, Dropdown, Checkbox, Button, HBox, VBox, Box, Layout, Text
+from ipywidgets.widgets import (
+    Label,
+    Dropdown,
+    Checkbox,
+    Button,
+    HBox,
+    VBox,
+    Box,
+    Layout,
+    Text,
+)
 import pandas as pd
 import dask.dataframe as dd
 from varname import argname
@@ -101,7 +111,12 @@ class UserInterface:
             " Clustering Method: ", layout=Layout(margin="2px 0 0 20px")
         )
         self._clustering_method_drop = Dropdown(
-            options=["fingerprint", "ngram-fingerprint", "phonetic-fingerprint", "levenshtein"],
+            options=[
+                "fingerprint",
+                "ngram-fingerprint",
+                "phonetic-fingerprint",
+                "levenshtein",
+            ],
             layout=Layout(width="150px", margin="0 0 0 10px"),
         )
         self._clustering_method_drop.observe(self._cluster_method_change, names="value")
@@ -159,7 +174,8 @@ class UserInterface:
         self._sel_all.observe(self._select_all, names="value")
 
         merge_and_recluster = Button(
-            description="Merge and Re-Cluster", layout=Layout(margin="0 0 0 466px", width="150px")
+            description="Merge and Re-Cluster",
+            layout=Layout(margin="0 0 0 466px", width="150px"),
         )
         merge_and_recluster.on_click(self._execute_merge)
 
@@ -233,8 +249,14 @@ class UserInterface:
             box_children.append(
                 HBox(
                     [
-                        Label(str(distinct_vals), layout=Layout(width="60px", margin="0 0 0 60px")),
-                        Label(str(totals_vals), layout=Layout(width="60px", margin="0 0 0 50px")),
+                        Label(
+                            str(distinct_vals),
+                            layout=Layout(width="60px", margin="0 0 0 60px"),
+                        ),
+                        Label(
+                            str(totals_vals),
+                            layout=Layout(width="60px", margin="0 0 0 50px"),
+                        ),
                         VBox(children=labels, layout=Layout(margin="0 0 0 80px")),
                         self._checks[idx],
                         self._reprs[idx],

@@ -28,7 +28,7 @@ def gen_new_df_with_used_cols(
     x: Optional[Union[str, LatLong]] = None,
     y: Optional[Union[str, LatLong]] = None,
     z: Optional[str] = None,
-) -> Tuple[Dict[Optional[Union[str, LatLong]], Optional[str]], Union[pd.DataFrame, dd.DataFrame]]:
+) -> Tuple[Dict[Optional[Union[str, LatLong]], Optional[str]], Union[pd.DataFrame, dd.DataFrame],]:
     """
     Keep only used columns in x, y, z, and gen new Latlong columns if any x, y, z is LatLong.
     """

@@ -45,7 +45,10 @@ def test_fingerprint_clusters(clean_duplication_ui: UserInterface) -> None:
     clean_duplication_ui._clustering_method_drop.value = "fingerprint"
     clusters = clean_duplication_ui._clusterer.get_page(0, 5)
     clusters_check = pd.Series(
-        [[("Québec", 3), ("Quebec", 2), ("quebec", 1)], [("Vancouver", 3), ("vancouver", 2)]],
+        [
+            [("Québec", 3), ("Quebec", 2), ("quebec", 1)],
+            [("Vancouver", 3), ("vancouver", 2)],
+        ],
         name="city",
     )
 

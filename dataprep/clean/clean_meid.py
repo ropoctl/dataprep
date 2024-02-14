@@ -78,7 +78,14 @@ def clean_meid(
     0  AF 01 23 45 0A BC DE C
     """
 
-    if output_format not in {"compact", "standard", "hex", "dec", "binary", "pseudo_esn"}:
+    if output_format not in {
+        "compact",
+        "standard",
+        "hex",
+        "dec",
+        "binary",
+        "pseudo_esn",
+    }:
         raise ValueError(
             f"output_format {output_format} is invalid. "
             'It needs to be "compact", "standard", "hex", "dec", "binary" or "pseudo_esn".'
@@ -142,7 +149,10 @@ def validate_meid(
 
 
 def _format(
-    val: Any, output_format: str = "standard", split: bool = False, errors: str = "coarse"
+    val: Any,
+    output_format: str = "standard",
+    split: bool = False,
+    errors: str = "coarse",
 ) -> Any:
     """
     Reformat a number string with proper separators (formats).

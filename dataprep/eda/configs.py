@@ -201,7 +201,11 @@ class Hist(BaseModel):
         """
         vals = [self.bins, self.yscale, self.color]
         names = ["hist.bins", "hist.yscale", "hist.color"]
-        descs = ["Number of bins in the histogram", 'Y-axis scale ("linear" or "log")', "Color"]
+        descs = [
+            "Number of bins in the histogram",
+            'Y-axis scale ("linear" or "log")',
+            "Color",
+        ]
         return [(f"'{name}': {_form(val)}", desc) for name, val, desc in zip(names, vals, descs)]
 
 
@@ -236,7 +240,14 @@ class Bar(BaseModel):
         how-to guide for plot(df, x)
         """
         vals = [self.bars, self.sort_descending, self.yscale, self.color, height, width]
-        names = ["bar.bars", "bar.sort_descending", "bar.yscale", "bar.color", "height", "width"]
+        names = [
+            "bar.bars",
+            "bar.sort_descending",
+            "bar.yscale",
+            "bar.color",
+            "height",
+            "width",
+        ]
         descs = [
             "Maximum number of bars to display",
             "Whether to sort the bars in descending order",
@@ -301,7 +312,14 @@ class KDE(BaseModel):
         how-to guide for plot(df, x)
         """
         vals = [self.bins, self.yscale, self.hist_color, self.line_color, height, width]
-        names = ["kde.bins", "kde.yscale", "kde.hist_color", "kde.line_color", "height", "width"]
+        names = [
+            "kde.bins",
+            "kde.yscale",
+            "kde.hist_color",
+            "kde.line_color",
+            "height",
+            "width",
+        ]
         descs = [
             "Number of bins in the histogram",
             'Y-axis scale ("linear" or "log")',
@@ -466,7 +484,7 @@ class WordCloud(BaseModel):
         Whether to apply Potter Stem on the words
     """
 
-    enable: bool = is_notebook()
+    enable: bool = True
     top_words: int = 30
     stopword: bool = True
     lemmatize: bool = False
@@ -527,7 +545,15 @@ class WordFrequency(BaseModel):
         """
         how-to guide for plot(df, x)
         """
-        vals = [self.top_words, self.stopword, self.lemmatize, self.stem, self.color, height, width]
+        vals = [
+            self.top_words,
+            self.stopword,
+            self.lemmatize,
+            self.stem,
+            self.color,
+            height,
+            width,
+        ]
         names = [
             "wordfreq.top_words",
             "wordfreq.stopword",
@@ -1262,7 +1288,9 @@ class Config(BaseModel):
 
     @classmethod
     def from_dict(
-        cls, display: Optional[List[str]] = None, config: Optional[Dict[str, Any]] = None
+        cls,
+        display: Optional[List[str]] = None,
+        config: Optional[Dict[str, Any]] = None,
     ) -> Config:
         """
         Converts an dictionary instance into a config class

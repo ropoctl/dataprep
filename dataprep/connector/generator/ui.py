@@ -153,7 +153,6 @@ class ConfigGeneratorUI:  # pylint: disable=too-many-instance-attributes
         )
 
     def _make_generator_option(self) -> VBox:
-
         self.table_path_box = Text(
             disabled=False, placeholder="table_path", layout={"width": "90%"}
         )
@@ -262,7 +261,6 @@ def _pairs(content: str) -> Generator[Tuple[Any, Any], None, None]:
         return
 
     for pair in content.split(","):
-
         x, *y = pair.split(":", maxsplit=1)
         if len(y) == 0:
             raise ValueError(f"Cannot parse pair {pair}")

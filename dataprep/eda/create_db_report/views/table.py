@@ -12,7 +12,11 @@ class TablePage:
         self.template_object = template_object
 
     def page_writer(
-        self, table: Table, json_tables: List[Any], json_relationships: List[Any], new_file: str
+        self,
+        table: Table,
+        json_tables: List[Any],
+        json_relationships: List[Any],
+        new_file: str,
     ):
         """
         Compile the data needed by the template for tables pages
@@ -40,9 +44,21 @@ class TablePage:
         page_data.set_depth(0)
 
         pagination_configs = {
-            "standard_table": {"paging": "true", "pageLength": 20, "lengthChange": "false"},
-            "indexes_table": {"paging": "true", "pageLength": 10, "lengthChange": "false"},
-            "check_table": {"paging": "true", "pageLength": 10, "lengthChange": "false"},
+            "standard_table": {
+                "paging": "true",
+                "pageLength": 20,
+                "lengthChange": "false",
+            },
+            "indexes_table": {
+                "paging": "true",
+                "pageLength": 10,
+                "lengthChange": "false",
+            },
+            "check_table": {
+                "paging": "true",
+                "pageLength": 10,
+                "lengthChange": "false",
+            },
         }
         return self.template_object.write_data(
             page_data, new_file, "table.js", pagination_configs, "../"

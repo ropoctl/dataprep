@@ -12,6 +12,7 @@ if is_notebook():
 else:
     from tqdm import tqdm
 
+
 # pylint: disable=method-hidden,too-many-instance-attributes
 class ProgressBar(Callback):  # type: ignore
     """A progress bar for DataPrep.EDA.

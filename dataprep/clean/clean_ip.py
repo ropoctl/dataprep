@@ -99,7 +99,14 @@ def clean_ip(
             f'input_format {input_format} is invalid, it needs to be "ipv4", "ipv6" or "auto"'
         )
 
-    if output_format not in {"compressed", "full", "binary", "hexa", "integer", "packed"}:
+    if output_format not in {
+        "compressed",
+        "full",
+        "binary",
+        "hexa",
+        "integer",
+        "packed",
+    }:
         raise ValueError(
             f'output_format {output_format} is invalid, it needs to be "compressed", "full", '
             '"binary", "hexa", "integer" or "packed"'

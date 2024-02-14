@@ -54,7 +54,10 @@ class DiagramFactory:
         json_tables = self.generate_diagram_tables(database_object.get_tables_dict())
         file = str(
             os.path.realpath(
-                os.path.join(os.path.dirname(__file__), "layout/diagrams/summary/relationships.dot")
+                os.path.join(
+                    os.path.dirname(__file__),
+                    "layout/diagrams/summary/relationships.dot",
+                )
             )
         )
         json_relationships = self.generate_diagram_relationships(file)
@@ -81,7 +84,9 @@ class DiagramFactory:
             os.chdir(self.dirs["table"])
             if _WITH_GV:
                 render_er(
-                    database_url, f"{table}.dot", include_tables=" ".join(related_table_names)
+                    database_url,
+                    f"{table}.dot",
+                    include_tables=" ".join(related_table_names),
                 )
             else:
                 raise self.import_err

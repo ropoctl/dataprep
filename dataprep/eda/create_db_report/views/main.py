@@ -53,6 +53,10 @@ class MainPage:
         page_data.set_depth(0)
 
         pagination_configs = {
-            "database_objects": {"paging": "true", "pageLength": 10, "lengthChange": "false"}
+            "database_objects": {
+                "paging": "true",
+                "pageLength": 10,
+                "lengthChange": "false",
+            }
         }
         return self.template_object.write_data(page_data, new_file, "main.js", pagination_configs)

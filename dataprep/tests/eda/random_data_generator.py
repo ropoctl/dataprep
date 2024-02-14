@@ -19,7 +19,10 @@ def _resolve_random_state(random_state: Union[int, np.random.RandomState]) -> np
 
 
 def _gen_random_int_series(
-    size: int, low: int = -100, high: int = 100, random_state: Union[int, np.random.RandomState] = 0
+    size: int,
+    low: int = -100,
+    high: int = 100,
+    random_state: Union[int, np.random.RandomState] = 0,
 ) -> pd.Series:
     """Return a randonly generated int Series, where the value is in [low, high]"""
     rand = _resolve_random_state(random_state)
@@ -185,7 +188,10 @@ def gen_random_dataframe(
     )
     df.columns = col_names
     df.index = gen_random_series(
-        df.index.shape[0], na_ratio=0.1, str_max_len=str_col_name_max_len, random_state=rand
+        df.index.shape[0],
+        na_ratio=0.1,
+        str_max_len=str_col_name_max_len,
+        random_state=rand,
     )
     return df
 

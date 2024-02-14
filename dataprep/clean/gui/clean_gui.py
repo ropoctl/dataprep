@@ -856,10 +856,16 @@ def getFunctionParams() -> Any:
                 )
                 temp_option_list.append({"value": "YYYY-MM-DD", "label": "YYYY-MM-DD"})
                 temp_option_list.append(
-                    {"value": "YYYY-MM-DD AD at hh:mm:ss Z", "label": "YYYY-MM-DD AD at hh:mm:ss Z"}
+                    {
+                        "value": "YYYY-MM-DD AD at hh:mm:ss Z",
+                        "label": "YYYY-MM-DD AD at hh:mm:ss Z",
+                    }
                 )
                 temp_option_list.append(
-                    {"value": "EEE, d MMM yyyy HH:mm:ss Z", "label": "EEE, d MMM yyyy HH:mm:ss Z"}
+                    {
+                        "value": "EEE, d MMM yyyy HH:mm:ss Z",
+                        "label": "EEE, d MMM yyyy HH:mm:ss Z",
+                    }
                 )
 
                 param_dic[arg] = temp_option_list
@@ -901,7 +907,10 @@ def getFunctionParams() -> Any:
                     }
                 )
                 temp_option_list.append(
-                    {"value": "dm", "label": "Degrees minutes ('51° 29.604' N, 0° 0.588' E')"}
+                    {
+                        "value": "dm",
+                        "label": "Degrees minutes ('51° 29.604' N, 0° 0.588' E')",
+                    }
                 )
                 temp_option_list.append(
                     {
@@ -923,7 +932,10 @@ def getFunctionParams() -> Any:
                 temp_option_list.append({"value": "compressed", "label": "Compressed (12.3.4.5)"})
                 temp_option_list.append({"value": "full", "label": "Full ('0012.0003.0004.0005')"})
                 temp_option_list.append(
-                    {"value": "binary", "label": "Binary ('00001100000000110000010000000101')"}
+                    {
+                        "value": "binary",
+                        "label": "Binary ('00001100000000110000010000000101')",
+                    }
                 )
                 temp_option_list.append({"value": "hexa", "label": "Hexa ('0xc030405')"})
                 temp_option_list.append({"value": "integer", "label": "Integer (201524229)"})
@@ -1205,7 +1217,11 @@ def getFunctionParams() -> Any:
                 param_dic[arg] = temp_option_list
                 param_default[arg] = str(args[arg].default)
 
-    return {"tableColumns": table_columns, "paramDic": param_dic, "paramDefault": param_default}
+    return {
+        "tableColumns": table_columns,
+        "paramDic": param_dic,
+        "paramDefault": param_default,
+    }
 
 
 @app.route("/cleanSingleCol", methods=["POST"])

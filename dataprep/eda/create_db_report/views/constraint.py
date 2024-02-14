@@ -11,7 +11,10 @@ class ConstraintPage:
         self.template_object = template_object
 
     def page_writer(
-        self, constraints: List[ForeignKeyConstraint], tables: List[Table], new_file: str
+        self,
+        constraints: List[ForeignKeyConstraint],
+        tables: List[Table],
+        new_file: str,
     ):
         """
         Compile the data needed by the template for constraints page
@@ -23,7 +26,11 @@ class ConstraintPage:
         page_data.set_depth(0)
         pagination_configs = {
             "fk_table": {"paging": "true", "pageLength": 20, "lengthChange": "false"},
-            "check_table": {"paging": "true", "pageLength": 10, "lengthChange": "false"},
+            "check_table": {
+                "paging": "true",
+                "pageLength": 10,
+                "lengthChange": "false",
+            },
         }
         return self.template_object.write_data(
             page_data, new_file, "constraint.js", pagination_configs

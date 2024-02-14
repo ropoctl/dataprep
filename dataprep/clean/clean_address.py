@@ -170,7 +170,8 @@ def clean_address(
 
 
 def validate_address(
-    x: Union[str, pd.Series], must_contain: Tuple[str, ...] = ("house_number", "street_name")
+    x: Union[str, pd.Series],
+    must_contain: Tuple[str, ...] = ("house_number", "street_name"),
 ) -> Union[bool, pd.Series]:
     """
     Validate US street addresses.
@@ -214,7 +215,11 @@ def validate_address(
 
 
 def _format_address(
-    address: Any, output_format: str, must_contain: Tuple[str, ...], split: bool, errors: str
+    address: Any,
+    output_format: str,
+    must_contain: Tuple[str, ...],
+    split: bool,
+    errors: str,
 ) -> Any:
     """
     Function to transform an address instance into the desired format

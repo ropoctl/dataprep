@@ -48,7 +48,9 @@ class Request:
         return response
 
     def post(
-        self, _headers: Optional[Dict[str, Any]] = None, _data: Optional[Dict[str, Any]] = None
+        self,
+        _headers: Optional[Dict[str, Any]] = None,
+        _data: Optional[Dict[str, Any]] = None,
     ) -> http.client.HTTPResponse:
         """
         POST request to the specified end-point.
@@ -82,7 +84,9 @@ class Request:
         return response
 
     def put(
-        self, _headers: Optional[Dict[str, Any]] = None, _data: Optional[Dict[str, Any]] = None
+        self,
+        _headers: Optional[Dict[str, Any]] = None,
+        _data: Optional[Dict[str, Any]] = None,
     ) -> http.client.HTTPResponse:
         """
         PUT request to the specified end-point.

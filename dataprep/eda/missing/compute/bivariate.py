@@ -64,7 +64,6 @@ def _compute_missing_bivariate(  # pylint: disable=too-many-locals,too-many-stat
     meta["y", "dtype"] = y_dtype
 
     if isinstance(y_dtype, Continuous):
-
         if cfg.pdf.enable or cfg.cdf.enable:
             dists = [rv_histogram((hist[0], hist[2])) for hist in hists]  # type: ignore
             distdf = pd.DataFrame({})

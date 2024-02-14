@@ -109,7 +109,9 @@ class Clusterer:
         df = counts.index.to_frame(name=self._col)
         # put strings in blocks
         populate_blocks = df[self._col].apply(
-            self._populate_blocks, args=(blocks, self._block_size), meta=(self._col, "object")
+            self._populate_blocks,
+            args=(blocks, self._block_size),
+            meta=(self._col, "object"),
         )
         _, self._counts = dask.compute(populate_blocks, counts)
 
@@ -208,7 +210,6 @@ class Clusterer:
     def _create_replace_calls(
         self, cluster_page: pd.Series, do_merge: List[bool], new_values: List[str]
     ) -> str:
-
         """
         Creates a string containing the required replace function calls.
 

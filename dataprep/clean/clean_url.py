@@ -252,7 +252,12 @@ def _format_url(
     if split:
         return scheme, host, cleaned_url, queries, rem_auth_code, rem_auth_cnt
     return (
-        {"scheme": scheme, "host": host, f"{col}_clean": cleaned_url, "queries": queries},
+        {
+            "scheme": scheme,
+            "host": host,
+            f"{col}_clean": cleaned_url,
+            "queries": queries,
+        },
         rem_auth_code,
         rem_auth_cnt,
     )

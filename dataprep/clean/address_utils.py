@@ -1566,7 +1566,10 @@ To report an error in labeling a valid name, open an issue at {repo_url} - it'll
 For more information, see the documentation at {docs_url}"""
 
     def __init__(
-        self, original_string: str, parsed_string: List[Any], repeated_label: Optional[str]
+        self,
+        original_string: str,
+        parsed_string: List[Any],
+        repeated_label: Optional[str],
     ) -> None:
         """
         This function initiates the RepeatedLabelError.
